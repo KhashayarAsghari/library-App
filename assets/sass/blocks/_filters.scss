@@ -1,0 +1,64 @@
+.filters {
+    max-width: 20%;
+    min-width: 300px;
+    background-color: $color-light;
+    @include dflex(flex-start, flex-start, column);
+    border: 2px solid $color-accent-light;
+    color: $color-accent-dark;
+    border-radius: $border-rad-xl;
+    position: sticky;
+    top: 20px;
+    right: 0;
+
+    &__buttons {
+        @include dflex(space-between, center);
+        width: 90%;
+        margin: auto;
+
+        &--apply {
+            background-color: $color-accent-dark;
+            color: white;
+            width: 50%;
+            border: none;
+            outline: none;
+            margin: $margin-s $margin-s;
+            padding: $padding-s $padding-xl;
+            border-radius: $border-rad-xl;
+
+
+        }
+
+        &--clear {
+            
+            color: $color-accent-dark;
+            border: 1px solid $color-accent-dark;
+            width: 50%;
+            margin: $margin-s $margin-s;
+            border-radius: $border-rad-xl;
+            outline: none;
+            padding: $padding-s $padding-xl;
+        }
+    }
+    
+    &__item {
+        padding: $padding-m $padding-xl;
+        width: 100%;
+        @include dflex(space-between)
+    }
+
+    &__item--hidden + .filters__list {
+        display: none;
+    }
+
+    &__item--hidden > i {
+        transform: rotate(90deg);
+        transition: 0.5s;
+    }
+
+    &__list {
+        transition: 0.5s;
+        &> li {
+            list-style-type: none;
+        }
+    }
+}

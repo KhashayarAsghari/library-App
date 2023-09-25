@@ -1,0 +1,51 @@
+.cart-books {
+    @include dflex(flex-start, center, column);
+    width: 100%;
+    max-width: 800px;
+    margin: $margin-xxxl auto;
+    
+
+    &__item {
+        width: 100%;
+        padding: $padding-l;
+        background-color: $color-light;
+        position: relative;
+        margin-bottom: $margin-xxxl;
+        border-radius: $border-rad-xl;
+        @include dflex(flex-start,stretch);
+
+        &__image {
+            width: 20%;
+            margin-left: $margin-xxxl;
+        }
+
+        &__desc {
+            @include dflex(space-around, flex-start,column);
+
+            &__item:not(:first-child) {
+                color: $color-accent-dark;
+                font-size: 1rem;
+            }
+            
+        }
+
+
+        &__remove {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: white;
+            background-color: red;
+            padding: $padding-m;
+            border-radius: 50%;
+            transition: 0.5s;
+            transform: translate(50%, -50%);
+
+            &:hover {
+                transition: 0.5s;
+                transform: translate(50%, -50%) scale(1.2);
+                cursor: pointer;
+            }
+        }
+    }
+}

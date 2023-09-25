@@ -1,0 +1,15 @@
+
+// shared
+@import "./shared/variables";
+@import "./shared/normalize";
+@import "./shared/mixins";
+
+
+
+// blocks
+@import "./blocks/header";
+@import "./blocks/main";
+@import "./blocks/filters";
+@import "./blocks/products";
+@import "./blocks/product";
+@import "./blocks/cart-books";
