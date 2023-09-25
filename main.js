@@ -8,8 +8,51 @@ function openList() {
     this.classList.toggle("filters__item--hidden");
 }
 
+function clearFilters() {
+    let filtersCheckboxes = document.querySelectorAll(".filters input[type='checkbox']")
+    for (const checkboxItem of filtersCheckboxes) {
+        checkboxItem.checked = false;
+        renderBooks(BOOKS)
+    }
+}
 
-function render(arr) {
+function render() {
+
+    if(history.state){
+
+    }else {
+        renderBooks(BOOKS);
+    }
+}
+
+function renderCart() {
+
+    temp = BASKET.map(item => {
+        const {id,title,author,published_date,language,genre,imgSrc} = item;
+        return `
+        <div id="${id}" class="cart-books__item">
+            <img src="./assets/image/${imgSrc}" alt="book image" class="cart-books__item__image">
+            <div class="cart-books__item__desc">
+                <h2 class="cart-books__item__desc__item">${title}</h2>
+                <h3 class="cart-books__item__desc__item"><span>نویسنده: </span>${author}</h3>
+                <h3 class="cart-books__item__desc__item"><span>تاریخ انتشار: </span>${published_date}</h3>
+                <h3 class="cart-books__item__desc__item"><span>زبان: </span>${language}</h3>
+                <h3 class="cart-books__item__desc__item"><span>ژانر: </span>${genre}</h3>
+
+            </div>
+
+            <i class="fa-solid fa-xmark cart-books__item__remove"></i>
+        </div>
+        `
+    }).join("");
+
+    root.innerHTML = temp;
+    history.pushState({}, "", "cart");
+
+}
+
+
+function renderBooks(arr) {
     temp = arr.map(item => {
         const {id,title,author,published_date,language,genre,imgSrc} = item;
         return `
@@ -46,7 +89,7 @@ function render(arr) {
 
     cartCounter.textContent = BASKET.length.toString();
 
-    library.innerHTML = temp;
+    root.innerHTML = temp;
 
     let addBook = document.querySelectorAll(".product__desc__basket");
     addBook.forEach(element => {
@@ -55,10 +98,10 @@ function render(arr) {
     
 }
 
-render(BOOKS);
+// renderBooks(BOOKS);
 
 
-function addToBasket(evt){
+function addToBasket(){
     temp = []
     let targetId = (this.parentElement.parentElement.getAttribute("id"));
     temp = BOOKS.filter(element => {
@@ -106,7 +149,7 @@ function applyFilters() {
     }
 
 
-    // filter BOOKS
+    // selected authors
     let filteredAuthors = BOOKS.map(item => {
         for(let i = 0; i<BOOKS.length; i++){
             for(let j=0; j<selectedAuthors.length; j++){
@@ -159,7 +202,7 @@ function applyFilters() {
 
     // filter genres
     
-    render(filteredBooks)
+    renderBooks(filteredBooks)
     
 }
 
@@ -176,4 +219,12 @@ for(let i=0; i<filterItems.length; i++){
     filterItems[i].addEventListener("click", openList)
 }
 
+btnClearFilters.addEventListener("click", clearFilters);
+
 btnApplyFilters.addEventListener("click", applyFilters);
+
+cartIcon.addEventListener("click", renderCart);
+
+window.location.addEventListener('hashchange', function () {
+    console.log('location changed!');
+});

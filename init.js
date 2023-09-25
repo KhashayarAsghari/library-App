@@ -1,7 +1,7 @@
 
 
 // dom nodes
-let library          = document.getElementById("products");
+let root             = document.getElementById("root");
 let filtersField     = document.getElementById("filters");
 let filterListAuthor = document.getElementById("filters__list__author");
 let filterListPDate  = document.getElementById("filters__list__p-date");
@@ -13,6 +13,7 @@ let btnClearFilters  = document.getElementById("clear-filters");
 let btnCloseFilters  = document.querySelector(".filters__buttons--close");
 let cartCounter      = document.getElementById("cart-counter");
 let filterIcon       = document.getElementById("filter-icon");
+let cartIcon         = document.querySelector(".header__cart-container");
 
 const BASKET = [];
 

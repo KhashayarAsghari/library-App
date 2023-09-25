@@ -1,4 +1,4 @@
-#products {
+#root {
     width: 100%;
     padding: 0 $padding-xxxl;
     @include dflex(space-around, flex-start, row, wrap);
