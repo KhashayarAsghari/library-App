@@ -1,12 +1,22 @@
 #container-main {
     width: 90%;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     position: relative;
     
+}
+
+.filter-icon {
+    padding: $padding-xl;
+    margin-top: $margin-xl;
+    margin-right: 10%;
+
+    @media (min-width: 768px){
+        display: none!important;
+    }
 }
 
 

@@ -23,20 +23,32 @@
         </a>
 
         <div class="header__navbar">
-            <h2 class="header__navbar__item">درباره ما</h2>
-            <h2 class="header__navbar__item">ارتباط با ما</h2>
-            <h2 class="header__navbar__item">دسته بندی ها</h2>
-            <h2 class="header__navbar__item">وبلاگ</h2>
+            <h2 class="header__navbar__item">درباره ما
+                <div class="header__navbar__item__underline"></div>
+            </h2>
+            <h2 class="header__navbar__item">ارتباط با ما
+                <div class="header__navbar__item__underline"></div>
+            </h2>
+            <h2 class="header__navbar__item">دسته بندی ها
+                <div class="header__navbar__item__underline"></div>
+            </h2>
+            <h2 class="header__navbar__item">وبلاگ
+                <div class="header__navbar__item__underline"></div>
+            </h2>
         </div>
 
         <div class="header__logo">LOGO</div>
+
+        <i class="fa-solid fa-bars header__menu"></i>
     </header>
 
-
+    <i id="filter-icon" class="fa-solid fa-filter filter-icon"></i>
 
     <section id="container-main" class="container-main">
+        
         <aside id="filters" class="filters">
             <div class="filters__buttons">
+                <i class="fa-solid fa-xmark filters__buttons--close"></i>
                 <button id="apply-filters" class="filters__buttons--apply">اعمال فیلتر ها</button>
                 <button id="clear-filters" class="filters__buttons--clear">حذف فیلتر ها</button>
             </div>

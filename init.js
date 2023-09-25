@@ -1,15 +1,18 @@
 
 
 // dom nodes
-let library = document.getElementById("products");
+let library          = document.getElementById("products");
+let filtersField     = document.getElementById("filters");
 let filterListAuthor = document.getElementById("filters__list__author");
-let filterListPDate = document.getElementById("filters__list__p-date");
-let filterListLang = document.getElementById("filters__list__lang");
-let filterListGenre = document.getElementById("filters__list__genre");
-let filterItems = document.querySelectorAll(".filters__item");
-let btnApplyFilters = document.getElementById("apply-filters");
-let btnClearFilters = document.getElementById("clear-filters");
-let cartCounter = document.getElementById("cart-counter");
+let filterListPDate  = document.getElementById("filters__list__p-date");
+let filterListLang   = document.getElementById("filters__list__lang");
+let filterListGenre  = document.getElementById("filters__list__genre");
+let filterItems      = document.querySelectorAll(".filters__item");
+let btnApplyFilters  = document.getElementById("apply-filters");
+let btnClearFilters  = document.getElementById("clear-filters");
+let btnCloseFilters  = document.querySelector(".filters__buttons--close");
+let cartCounter      = document.getElementById("cart-counter");
+let filterIcon       = document.getElementById("filter-icon");
 
 const BASKET = [];
 

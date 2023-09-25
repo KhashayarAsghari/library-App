@@ -30,11 +30,40 @@
     }
 
     &__navbar {
-        @include dflex();
+        display: none;
+        
+
+        @media (min-width: 768px){
+            @include dflex();
+        }
 
         &__item {
             padding: $padding-s $padding-l;
             font-size: 1.2rem;
+            cursor: default;
+
+            &__underline{
+                width: 0;
+                height: 4px;
+                background-color: $color-accent-dark;
+                border-radius: 4px;
+                transition: 0.5s;
+            }
+
+            &:hover .header__navbar__item__underline {
+
+                    width: 100%;
+                    transition: 0.5s;
+            
+            }
+        }
+    }
+
+    &__menu {
+
+        
+        @media (min-width: 768px){
+            display: none!important;
         }
     }
 }

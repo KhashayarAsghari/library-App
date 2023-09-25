@@ -1,14 +1,26 @@
 .filters {
     max-width: 20%;
     min-width: 300px;
+    max-height: 70vh;
     background-color: $color-light;
-    @include dflex(flex-start, flex-start, column);
     border: 2px solid $color-accent-light;
     color: $color-accent-dark;
     border-radius: $border-rad-xl;
-    position: sticky;
-    top: 20px;
+    position: absolute;
+    z-index: 10;
+    top: -40px;
     right: 0;
+    overflow-y: auto;
+    display: none;
+
+
+    @media (min-width: 768px){
+        @include dflex(flex-start, flex-start, column);
+        position: sticky;
+        top: 0;
+        height: auto;
+        max-height: 70vh;
+    }
 
     &__buttons {
         @include dflex(space-between, center);
@@ -37,6 +49,13 @@
             border-radius: $border-rad-xl;
             outline: none;
             padding: $padding-s $padding-xl;
+        }
+
+        &--close {
+            padding: $padding-m;
+            @media (min-width: 768px){
+                display: none!important;
+            }
         }
     }
     

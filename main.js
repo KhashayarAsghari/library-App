@@ -4,8 +4,8 @@
 
 
 // functions
-function openList(evt) {
-    evt.target.classList.toggle("filters__item--hidden");
+function openList() {
+    this.classList.toggle("filters__item--hidden");
 }
 
 
@@ -168,6 +168,9 @@ function applyFilters() {
 
 
 // events
+filterIcon.addEventListener("click", ()=> filtersField.style.display = "block")
+
+btnCloseFilters.addEventListener("click", ()=> filtersField.style.display = "")
 
 for(let i=0; i<filterItems.length; i++){
     filterItems[i].addEventListener("click", openList)
