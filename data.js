@@ -54,7 +54,7 @@
         imgSrc: "6.jpg"
     },
     {
-        id: 8,
+        id: 7,
         title: "ویس و رامین",
         author: "فخرالدین اسعد گرگانی",
         published_date: 1054,
@@ -63,7 +63,7 @@
         imgSrc: "7.jpg"
     },
     {
-        id: 9,
+        id: 8,
         title: "گلستان",
         author: "سعدی",
         published_date: 1258,

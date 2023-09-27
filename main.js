@@ -114,7 +114,7 @@ renderBooks(BOOKS);
 
 
 function addToBasket(){
-    temp = []
+    let temp = []
     let targetId = (this.parentElement.parentElement.getAttribute("id"));
     temp = BOOKS.filter(element => {
         return element.id == targetId;

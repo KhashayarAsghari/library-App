@@ -16,9 +16,16 @@ let filterIcon       = document.getElementById("filter-icon");
 let cartIcon         = document.querySelector(".header__cart-container");
 
 let BASKET = [];
+let storedBasket = localStorage.getItem("myBasket");
 
 
-localStorage.getItem("myBasket") != "[object Object]" ? BASKET = JSON.parse(localStorage.getItem("myBasket")) : BASKET = [];
+if(storedBasket == "[object Object]" || !storedBasket){
+    BASKET = [];
+    console.log(BASKET)
+}else{
+    BASKET = JSON.parse(storedBasket);
+    console.log(BASKET)
+}
 
 
 
