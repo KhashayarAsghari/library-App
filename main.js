@@ -18,9 +18,9 @@ function clearFilters() {
 
 function render() {
 
-    if(history.state){
+    if (history.state) {
 
-    }else {
+    } else {
         renderBooks(BOOKS);
     }
 }
@@ -29,7 +29,7 @@ function renderCart() {
     cartCounter.textContent = BASKET.length;
 
     temp = BASKET.map(item => {
-        const {id,title,author,published_date,language,genre,imgSrc} = item;
+        const { id, title, author, published_date, language, genre, imgSrc } = item;
         return `
         <div id="${id}" class="cart-books__item">
             <img src="./assets/image/${imgSrc}" alt="book image" class="cart-books__item__image">
@@ -53,8 +53,8 @@ function renderCart() {
 }
 
 function removeItem(itemId) {
-    BASKET.forEach((element,index) => {
-        if(element.id == itemId) BASKET.splice(index, 1)
+    BASKET.forEach((element, index) => {
+        if (element.id == itemId) BASKET.splice(index, 1)
     });
 
     localStorage.setItem("myBasket", BASKET);
@@ -64,7 +64,7 @@ function removeItem(itemId) {
 
 function renderBooks(arr) {
     let temp = arr.map(item => {
-        const {id,title,author,published_date,language,genre,imgSrc} = item;
+        const { id, title, author, published_date, language, genre, imgSrc } = item;
         return `
                 <div id="${id}" class="product" >
                     <img src="./assets/image/${imgSrc}" alt="product image" class="product__image">
@@ -106,14 +106,14 @@ function renderBooks(arr) {
         element.addEventListener("click", addToBasket);
     });
 
-    
-    
+
+
 }
 
 renderBooks(BOOKS);
 
 
-function addToBasket(){
+function addToBasket() {
     let temp = []
     let targetId = (this.parentElement.parentElement.getAttribute("id"));
     temp = BOOKS.filter(element => {
@@ -125,95 +125,98 @@ function addToBasket(){
     localStorage.setItem(
         'myBasket',
         JSON.stringify(BASKET),
-      );
+    );
 }
 
 
 function applyFilters() {
+    let result = [];
     // selected authors
     temp = filterListAuthor.childNodes;
     let selectedAuthors = [];
-    for(let i=0; i< temp.length; i++){
-        if(temp[i].firstElementChild.checked){
+    for (let i = 0; i < temp.length; i++) {
+        if (temp[i].firstElementChild.checked) {
             selectedAuthors.push(temp[i].textContent.trim());
         }
     }
-    
+
+    if (selectedAuthors.length == 0) {
+        for (let i = 0; i < temp.length; i++) {
+            selectedAuthors.push(temp[i].textContent.trim());
+        }
+    }
+
 
     // selected languages
     temp = filterListLang.childNodes;
     let selectedLanguages = [];
-    for(let i=0; i<temp.length; i++){
-        if(temp[i].firstElementChild.checked){
+    for (let i = 0; i < temp.length; i++) {
+        if (temp[i].firstElementChild.checked) {
             selectedLanguages.push(temp[i].textContent.trim());
+        }
+    }
+
+    if (selectedLanguages.length == 0) {
+        for (let i = 0; i < temp.length; i++) {
+            selectedLanguages.push(temp[i].textContent.trim())
         }
     }
 
     // selected genres
     temp = filterListGenre.childNodes;
     let selectedGenres = [];
-    for(let i=0; i<temp.length; i++){
-        if(temp[i].firstElementChild.checked){
+    for (let i = 0; i < temp.length; i++) {
+        if (temp[i].firstElementChild.checked) {
             selectedGenres.push(temp[i].textContent.trim());
         }
     }
 
+    if (selectedGenres.length == 0) {
+        for (let i = 0; i < temp.length; i++) {
+            selectedGenres.push(temp[i].textContent.trim());
+        }
+    }
 
     // selected authors
     let filteredAuthors = BOOKS.map(item => {
-        for(let i = 0; i<BOOKS.length; i++){
-            for(let j=0; j<selectedAuthors.length; j++){
-                if(item.author == selectedAuthors[j]) return item;
+        for (let i = 0; i < BOOKS.length; i++) {
+            for (let j = 0; j < selectedAuthors.length; j++) {
+                if (item.author == selectedAuthors[j]) return item;
             }
         }
     })
-    for(let i=0; i<filteredAuthors.length; i++){
-        if(filteredAuthors[i] == undefined){ 
-            filteredAuthors.splice(i,1);
+    for (let i = 0; i < filteredAuthors.length; i++) {
+        if (filteredAuthors[i] == undefined) {
+            filteredAuthors.splice(i, 1);
             i--;
         };
-        
+
     }
-    
+
+
+
+
     // filter languages
-    let filteredLanguages = BOOKS.map(item => {
-        for(let i = 0; i<BOOKS.length; i++){
-            for(let j=0; j<selectedLanguages.length; j++){
-                if(item.language == selectedLanguages[j]) return item;
-            }
-        }
-    })
 
-    for(let i=0; i<filteredLanguages.length; i++){
-        if(filteredLanguages[i] == undefined){
-            filteredLanguages.splice(i,1);
-            i--;
-        }
+    for (const lang of selectedLanguages) {
+        temp = filteredAuthors.filter(item => item.language == lang);
+        result.push(temp);
+        result = result.flat();
     }
-
-
-    let filteredBooks = [];
-
-    for(let i=0; i<filteredAuthors.length; i++){
-        filteredBooks.push(filteredAuthors[i]);
-        for(let j=0; j<filteredLanguages.length; j++){
-            if(JSON.stringify(filteredAuthors[i]) == JSON.stringify(filteredLanguages[j])){
-                filteredLanguages.splice(j,1);
-                j--;
-            }
-        }
-    }
-
-    for(let i=0; i<filteredLanguages.length; i++){
-        filteredBooks.push(filteredLanguages[i]);
-    }
-
 
 
     // filter genres
-    
-    renderBooks(filteredBooks)
-    
+    let temporaryResult = []
+    for (const genre of selectedGenres) {
+        temp = result.filter(item => item.genre == genre);
+        temporaryResult.push(temp);
+        temporaryResult = temporaryResult.flat();
+    }
+
+    result = temporaryResult;
+
+    renderBooks(result)
+
 }
 
 
@@ -221,11 +224,11 @@ function applyFilters() {
 
 
 // events
-filterIcon.addEventListener("click", ()=> filtersField.style.display = "block")
+filterIcon.addEventListener("click", () => filtersField.style.display = "block")
 
-btnCloseFilters.addEventListener("click", ()=> filtersField.style.display = "")
+btnCloseFilters.addEventListener("click", () => filtersField.style.display = "")
 
-for(let i=0; i<filterItems.length; i++){
+for (let i = 0; i < filterItems.length; i++) {
     filterItems[i].addEventListener("click", openList)
 }
 

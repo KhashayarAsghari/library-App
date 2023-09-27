@@ -21,14 +21,9 @@ let storedBasket = localStorage.getItem("myBasket");
 
 if(storedBasket == "[object Object]" || !storedBasket){
     BASKET = [];
-    console.log(BASKET)
 }else{
     BASKET = JSON.parse(storedBasket);
-    console.log(BASKET)
 }
-
-
-
 
 // ========initial filters========
 
