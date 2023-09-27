@@ -26,6 +26,7 @@ function render() {
 }
 
 function renderCart() {
+    cartCounter.textContent = BASKET.length;
 
     temp = BASKET.map(item => {
         const {id,title,author,published_date,language,genre,imgSrc} = item;
@@ -41,7 +42,7 @@ function renderCart() {
 
             </div>
 
-            <i class="fa-solid fa-xmark cart-books__item__remove"></i>
+            <i onclick="removeItem(${id})" class="fa-solid fa-xmark cart-books__item__remove"></i>
         </div>
         `
     }).join("");
@@ -49,6 +50,15 @@ function renderCart() {
     root.innerHTML = temp;
     history.pushState({}, "", "cart");
 
+}
+
+function removeItem(itemId) {
+    BASKET.forEach((element,index) => {
+        if(element.id == itemId) BASKET.splice(index, 1)
+    });
+
+    localStorage.setItem("myBasket", BASKET);
+    renderCart(BASKET)
 }
 
 
@@ -225,6 +235,3 @@ btnApplyFilters.addEventListener("click", applyFilters);
 
 cartIcon.addEventListener("click", renderCart);
 
-window.location.addEventListener('hashchange', function () {
-    console.log('location changed!');
-});
