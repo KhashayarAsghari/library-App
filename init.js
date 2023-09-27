@@ -17,9 +17,10 @@ let cartIcon         = document.querySelector(".header__cart-container");
 
 let BASKET = [];
 
-localStorage.getItem("myBasket") ? BASKET = JSON.parse(localStorage.getItem("myBasket")) : BASKET = [];
 
-console.log(BASKET)
+localStorage.getItem("myBasket") != "[object Object]" ? BASKET = JSON.parse(localStorage.getItem("myBasket")) : BASKET = [];
+
+
 
 
 // ========initial filters========

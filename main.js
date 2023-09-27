@@ -63,7 +63,7 @@ function removeItem(itemId) {
 
 
 function renderBooks(arr) {
-    temp = arr.map(item => {
+    let temp = arr.map(item => {
         const {id,title,author,published_date,language,genre,imgSrc} = item;
         return `
                 <div id="${id}" class="product" >
