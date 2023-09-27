@@ -15,15 +15,20 @@ let cartCounter      = document.getElementById("cart-counter");
 let filterIcon       = document.getElementById("filter-icon");
 let cartIcon         = document.querySelector(".header__cart-container");
 
-const BASKET = [];
+let BASKET = [];
+
+localStorage.getItem("myBasket") ? BASKET = JSON.parse(localStorage.getItem("myBasket")) : BASKET = [];
+
+console.log(BASKET)
 
 
-// initial filters
+// ========initial filters========
 
 // initial authors
 let uniqueAuthors = [];
 let temp = []
 let count = 0;
+
 temp = BOOKS.map(item => {
     return item.author;
 });

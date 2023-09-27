@@ -95,10 +95,12 @@ function renderBooks(arr) {
     addBook.forEach(element => {
         element.addEventListener("click", addToBasket);
     });
+
+    
     
 }
 
-// renderBooks(BOOKS);
+renderBooks(BOOKS);
 
 
 function addToBasket(){
@@ -114,8 +116,6 @@ function addToBasket(){
         'myBasket',
         JSON.stringify(BASKET),
       );
-    // console.log(this.parentElement.parentElement)
-    // console.log(evt.target.parentElement.parentElement)
 }
 
 
