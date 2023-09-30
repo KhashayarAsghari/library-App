@@ -17,12 +17,14 @@ function clearFilters() {
 }
 
 function render() {
-
-    if (history.state) {
-
-    } else {
-        renderBooks(BOOKS);
+    let currLocation = location.pathname;
+    switch (currLocation){
+        case "/": renderBooks(BOOKS);
+            break;
+        case "/cart": renderCart();
+            break;
     }
+   
 }
 
 function renderCart() {
@@ -238,3 +240,5 @@ btnApplyFilters.addEventListener("click", applyFilters);
 
 cartIcon.addEventListener("click", renderCart);
 
+
+window.addEventListener("popstate", render)
