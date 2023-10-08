@@ -93,7 +93,7 @@ function renderBooks(arr) {
                         </div>
                         <div class="product__desc__basket">
                         <i class="fa-solid fa-book-medical"></i>
-                        <h4>اضافه به سبد خرید</h4>
+                        <h4>اضافه به کتابخانه</h4>
                     </div>
                     </div>
                 </div>`
